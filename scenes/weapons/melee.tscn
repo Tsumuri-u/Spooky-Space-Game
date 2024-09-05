@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://belpc13jvewfs"]
+
+[ext_resource type="Script" path="res://scripts/player/melee.gd" id="1_njlr1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtl24"]
+
+[node name="Melee" type="Area2D"]
+script = ExtResource("1_njlr1")
+
+[node name="MeleeSprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qtl24")

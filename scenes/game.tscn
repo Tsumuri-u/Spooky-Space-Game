@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://5sl3pm34tnm1"]
+
+[ext_resource type="PackedScene" uid="uid://c1ebkofaps1ns" path="res://scenes/player.tscn" id="1_b6spj"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_jcoth"]
+[ext_resource type="Texture2D" uid="uid://cevs8lhf6yco8" path="res://assets/backgrounds/Starfield 1 - 1024x1024.png" id="3_duu12"]
+[ext_resource type="PackedScene" uid="uid://d165filb1nd7h" path="res://scenes/enemies/basic_enemy.tscn" id="4_dkf4h"]
+[ext_resource type="PackedScene" uid="uid://ckryxjfxf6nbl" path="res://scenes/weapon_pickup.tscn" id="5_kxk2h"]
+[ext_resource type="Resource" uid="uid://bbkrmy545j16w" path="res://scenes/weapons/basic_gun.tres" id="6_ghf3y"]
+[ext_resource type="Resource" uid="uid://cirm4i4gw8ufu" path="res://scenes/weapons/missile_launcher.tres" id="7_pdoop"]
+[ext_resource type="Resource" uid="uid://c23awmicjy675" path="res://scenes/weapons/spike_launcher.tres" id="8_m357i"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_b6spj")]
+unique_name_in_owner = true
+z_index = 5
+position = Vector2(555, 359)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 1)
+scale = Vector2(2.54423, 3.11856)
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("2_jcoth")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -500
+offset_left = -1546.0
+offset_top = -1140.0
+offset_right = 2624.0
+offset_bottom = 1590.0
+scale = Vector2(1.01549, 0.980919)
+texture = ExtResource("3_duu12")
+stretch_mode = 1
+
+[node name="Enemy" parent="." instance=ExtResource("4_dkf4h")]
+position = Vector2(801, 437)
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="WeaponPickup" parent="Pickups" instance=ExtResource("5_kxk2h")]
+position = Vector2(480, 497)
+weapon = ExtResource("6_ghf3y")
+
+[node name="WeaponPickup2" parent="Pickups" instance=ExtResource("5_kxk2h")]
+position = Vector2(550, 496)
+weapon = ExtResource("7_pdoop")
+
+[node name="WeaponPickup3" parent="Pickups" instance=ExtResource("5_kxk2h")]
+position = Vector2(620, 500)
+weapon = ExtResource("6_ghf3y")
+
+[node name="WeaponPickup4" parent="Pickups" instance=ExtResource("5_kxk2h")]
+position = Vector2(402, 389)
+weapon = ExtResource("8_m357i")

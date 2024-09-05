@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://d165filb1nd7h"]
+
+[ext_resource type="Texture2D" uid="uid://baew0mydmiehk" path="res://assets/enemies/enemy_temp.png" id="1_elmc8"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_hpfde"]
+[ext_resource type="Texture2D" uid="uid://b127o1abbsub4" path="res://assets/enemies/lockon_reticle_temp.png" id="2_mke0f"]
+[ext_resource type="Resource" uid="uid://c4pi03nk0tu2l" path="res://scenes/enemies/basic_enemy.tres" id="2_r68sf"]
+[ext_resource type="Texture2D" uid="uid://cm16plts5ot8q" path="res://assets/enemies/looking_reticle_temp.png" id="4_mhbbd"]
+[ext_resource type="Script" path="res://scripts/enemies/lockbox.gd" id="4_uw3wu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nf6l"]
+radius = 13.0384
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57rpn"]
+radius = 15.6659
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6crbg"]
+radius = 15.0
+
+[node name="Enemy" type="RigidBody2D"]
+scale = Vector2(1, 1.00149)
+collision_layer = 256
+gravity_scale = 0.0
+script = ExtResource("1_hpfde")
+stats = ExtResource("2_r68sf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_elmc8")
+
+[node name="Collisionbox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_3nf6l")
+
+[node name="Lockbox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("4_uw3wu")
+
+[node name="ReticleLocked" type="Sprite2D" parent="Lockbox"]
+visible = false
+texture = ExtResource("2_mke0f")
+
+[node name="ReticleLooking" type="Sprite2D" parent="Lockbox"]
+visible = false
+texture = ExtResource("4_mhbbd")
+
+[node name="LockboxArea" type="CollisionShape2D" parent="Lockbox"]
+scale = Vector2(1.02133, 1)
+shape = SubResource("CircleShape2D_57rpn")
+debug_color = Color(0.968627, 0, 0.466667, 0.0862745)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+
+[node name="HurtboxArea" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_6crbg")
+debug_color = Color(7.21961e-07, 0.629729, 0.479687, 0.42)
+
+[node name="AI" type="Node" parent="."]
+
+[node name="StaggerTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="StaggerTimer" to="." method="_on_stagger_timer_timeout"]

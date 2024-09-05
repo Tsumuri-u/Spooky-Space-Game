@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://bbkrmy545j16w"]
+
+[ext_resource type="PackedScene" uid="uid://b1ghrb57pe5xi" path="res://scenes/weapons/bullet.tscn" id="1_hnw1q"]
+[ext_resource type="Script" path="res://model/weapon_resource.gd" id="1_s38ny"]
+[ext_resource type="Texture2D" uid="uid://d1biejc5jxsuy" path="res://assets/weapons/basic_gun.png" id="2_2kakg"]
+[ext_resource type="Texture2D" uid="uid://yy6csvpsllb0" path="res://assets/weapons/basic_bullet.png" id="2_3uo1p"]
+
+[resource]
+script = ExtResource("1_s38ny")
+name = &"Basic Gun"
+sprite = ExtResource("2_2kakg")
+projectile = ExtResource("1_hnw1q")
+projectile_sprite = ExtResource("2_3uo1p")
+projectile_radius = 4
+type = 0
+melee_pattern = 0
+startup = 0.0
+velocity = 30
+damage = 145
+recovery = 0.3
+recoil_force = 0
+recoil_time = 0.0
+enemy_knockback_damage = 2
+enemy_knockback_amount = 10
+enemy_stagger_damage = 2
+enemy_stagger_time = 1.0
+durability = 1
+homing_drag = 15
+timeout = 5.0

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://c4pi03nk0tu2l"]
+
+[ext_resource type="Script" path="res://model/enemy_stats.gd" id="1_stjxt"]
+
+[resource]
+script = ExtResource("1_stjxt")
+health = 15320
+knockback_threshold = 1
+knockback_resist = 3
+stagger_health = 5
+stagger_weakness = 1.0
+damage = 1

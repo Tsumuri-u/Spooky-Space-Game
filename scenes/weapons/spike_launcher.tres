@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://c23awmicjy675"]
+
+[ext_resource type="PackedScene" uid="uid://belpc13jvewfs" path="res://scenes/weapons/melee.tscn" id="1_u8vq1"]
+[ext_resource type="Texture2D" uid="uid://eux46cdohg0m" path="res://assets/weapons/spike.png" id="2_v317v"]
+[ext_resource type="Script" path="res://model/weapon_resource.gd" id="3_eq8n4"]
+[ext_resource type="Texture2D" uid="uid://cxlumsfi4sk4g" path="res://assets/weapons/spike_launcher.png" id="4_tigsi"]
+
+[resource]
+script = ExtResource("3_eq8n4")
+name = &"Poker"
+sprite = ExtResource("4_tigsi")
+projectile = ExtResource("1_u8vq1")
+projectile_sprite = ExtResource("2_v317v")
+projectile_radius = 20
+type = 2
+melee_pattern = 1
+startup = 0.0
+velocity = 3
+damage = 0
+recovery = 0.0
+recoil_force = 0
+recoil_time = 0.0
+enemy_knockback_damage = 0
+enemy_knockback_amount = 0
+enemy_stagger_damage = 0
+enemy_stagger_time = 0.0
+durability = 3
+homing_drag = 0
+timeout = 5.0

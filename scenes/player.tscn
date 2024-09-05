@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1ebkofaps1ns"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_yxdu7"]
+[ext_resource type="Texture2D" uid="uid://b3vbjcf40hu55" path="res://assets/player/player_ship.png" id="2_lploq"]
+[ext_resource type="Script" path="res://scripts/player/weapon.gd" id="3_rlhgg"]
+[ext_resource type="Texture2D" uid="uid://b7ytdwhs2y2ls" path="res://assets/player/fcs_indicator.png" id="3_y66lg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m5lsd"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 10
+collision_mask = 37
+platform_floor_layers = 4294901760
+script = ExtResource("1_yxdu7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lploq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m5lsd")
+
+[node name="FCS" type="RayCast2D" parent="."]
+target_position = Vector2(500, 0)
+collision_mask = 1024
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="FCSIndicator" type="Sprite2D" parent="FCS"]
+rotation = 1.57079
+texture = ExtResource("3_y66lg")
+
+[node name="BoostTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="LWeapon" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -15)
+rotation = 1.5708
+script = ExtResource("3_rlhgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="LWeapon"]
+
+[node name="LRecovery" type="Timer" parent="LWeapon"]
+
+[node name="RWeapon" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 15)
+rotation = 1.5708
+script = ExtResource("3_rlhgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="RWeapon"]
+
+[node name="RRecovery" type="Timer" parent="RWeapon"]
+
+[node name="RecoilTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BoostTimer" to="." method="_on_boost_timer_timeout"]
+[connection signal="timeout" from="LWeapon/LRecovery" to="." method="_on_l_recovery_timeout"]
+[connection signal="timeout" from="RWeapon/RRecovery" to="." method="_on_r_recovery_timeout"]
+[connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]

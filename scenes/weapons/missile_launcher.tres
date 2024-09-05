@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://cirm4i4gw8ufu"]
+
+[ext_resource type="PackedScene" uid="uid://b1ghrb57pe5xi" path="res://scenes/weapons/bullet.tscn" id="1_2ieis"]
+[ext_resource type="Script" path="res://model/weapon_resource.gd" id="1_2518g"]
+[ext_resource type="Texture2D" uid="uid://eprirjt8jtej" path="res://assets/weapons/missile_bullet.png" id="2_17tlg"]
+[ext_resource type="Texture2D" uid="uid://bbt3gang3ocwq" path="res://assets/weapons/missile_launcher.png" id="2_of8sv"]
+
+[resource]
+script = ExtResource("1_2518g")
+name = &"Missile Launcher"
+sprite = ExtResource("2_of8sv")
+projectile = ExtResource("1_2ieis")
+projectile_sprite = ExtResource("2_17tlg")
+projectile_radius = 16
+type = 0
+melee_pattern = 0
+startup = 0.0
+velocity = 3
+damage = 1320
+recovery = 2.9
+recoil_force = 400
+recoil_time = 2.025
+enemy_knockback_damage = 25
+enemy_knockback_amount = 100
+enemy_stagger_damage = 0
+enemy_stagger_time = 0.0
+durability = 3
+homing_drag = 1
+timeout = 5.0
