@@ -23,14 +23,15 @@ func undisplay():
 func fire():
 	var projectile = WEAPON.projectile.instantiate()
 	projectile.weapon_params = WEAPON
-	projectile.spawn_position = self.global_position
-	projectile.spawn_rotation = self.global_rotation
 
-	if projectile is Bullet and get_parent().locked == true:
-		projectile.target = get_parent().target
+	if projectile is Bullet:
+		projectile.spawn_position = self.global_position
+		projectile.spawn_rotation = self.global_rotation
+		if get_parent().locked == true:
+			projectile.target = get_parent().target
 		
-	if projectile is Bullet or Placed:
+	if projectile is Bullet || projectile is Placed:
 		main.add_child.call_deferred(projectile)
+	
 	if projectile is Melee:
-		self.add_child.call_deferred(projectile)
-
+		add_child(projectile)

@@ -57,12 +57,12 @@ func _handle_lookat():
 
 func _handle_movement():
 	# decelerate player
-	var moving = Input.is_action_pressed("move_right") or \
-				 Input.is_action_pressed("move_left") or \
-				 Input.is_action_pressed("move_up") or \
+	var moving = Input.is_action_pressed("move_right") || \
+				 Input.is_action_pressed("move_left") || \
+				 Input.is_action_pressed("move_up") || \
 				 Input.is_action_pressed("move_down")
 	
-	if !moving or !can_move:
+	if !moving || !can_move:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 	
 	# otherwise accelerate player
@@ -89,7 +89,7 @@ func _handle_movement():
 				velocity.y = -boost_speed
 	
 func _handle_boost():
-	if Input.is_action_just_pressed("boost") and can_boost:
+	if Input.is_action_just_pressed("boost") && can_boost:
 		boosting = true
 		boost_timer.start()
 		can_boost = false
@@ -107,7 +107,7 @@ func _handle_lockon():
 				target.show_locked()
 
 func _handle_lockoff():
-	if locked and !fcs.is_colliding():
+	if locked && !fcs.is_colliding():
 		locked = false
 		target.hide_locked()
 		target.hide_looking()
@@ -115,7 +115,7 @@ func _handle_lockoff():
 
 func _handle_weapon_firing():
 	if Input.is_action_just_pressed("shoot_left"):
-		if lweapon.WEAPON != null and can_fire_left:
+		if lweapon.WEAPON != null && can_fire_left:
 			lweapon.fire()
 			if lweapon.WEAPON.recovery != 0:
 				lrecovery.wait_time = lweapon.WEAPON.recovery
@@ -128,7 +128,7 @@ func _handle_weapon_firing():
 			lweapon.durability -= 1
 
 	if Input.is_action_just_pressed("shoot_right"):
-		if rweapon.WEAPON != null and can_fire_right:
+		if rweapon.WEAPON != null && can_fire_right:
 			rweapon.fire()
 			if rweapon.WEAPON.recovery != 0:
 				rrecovery.wait_time = rweapon.WEAPON.recovery
@@ -140,17 +140,17 @@ func _handle_weapon_firing():
 			rweapon.durability -= 1
 
 func _handle_weapon_destruction():
-	if lweapon.WEAPON != null and lweapon.durability <= 0:
+	if lweapon.WEAPON != null && lweapon.durability <= 0:
 		lweapon.WEAPON = null
 		lweapon.undisplay()
 	
-	if rweapon.WEAPON != null and rweapon.durability <= 0:
+	if rweapon.WEAPON != null && rweapon.durability <= 0:
 		rweapon.WEAPON = null
 		rweapon.undisplay()
 
 func _handle_enemy_temp_reticle():
 	# temp lockon reticle if looking at enemy
-	if !locked and fcs.is_colliding():
+	if !locked && fcs.is_colliding():
 		target = fcs.get_collider()
 		if target != null:
 			target.show_looking()
@@ -158,7 +158,7 @@ func _handle_enemy_temp_reticle():
 		target.hide_looking()
 
 func _connect_enemy_death_signal():
-	if target and !target.get_parent().health_depleted.is_connected(_on_enemy_death):
+	if target && !target.get_parent().health_depleted.is_connected(_on_enemy_death):
 		target.get_parent().health_depleted.connect(_on_enemy_death)
 
 func _apply_recoil(distance: int, time: float):

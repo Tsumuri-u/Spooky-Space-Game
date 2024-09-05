@@ -35,7 +35,7 @@ func _physics_process(_delta):
 	if velocity < weapon_params.velocity:
 		velocity += (1/weapon_params.startup) * weapon_params.velocity
 
-	if target != null and weapon_params.homing_drag != 0:
+	if target != null && weapon_params.homing_drag != 0:
 		# addition of angle must be on angleTo
 		var angleTo = global_position.direction_to(target.global_position).angle() + PI/2
 		angleTo = lerp_angle(global_rotation, angleTo, 1/float(weapon_params.homing_drag))

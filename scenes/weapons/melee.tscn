@@ -5,9 +5,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtl24"]
 
 [node name="Melee" type="Area2D"]
+z_index = -1
+collision_layer = 8
+collision_mask = 64
 script = ExtResource("1_njlr1")
 
 [node name="MeleeSprite" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qtl24")
+
+[node name="Timeout" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timeout" to="." method="_on_timeout_timeout"]

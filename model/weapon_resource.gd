@@ -14,10 +14,10 @@ enum MELEE_PATTERN { NONE, THRUST, SWEEP, SPIN }
 @export var type: WEAPON_TYPE
 @export var melee_pattern: MELEE_PATTERN
 
-@export var startup: float # physics frames before weapon reaches max velocity or before explosion
-@export var velocity: int # max speed
+@export_range(0, 1000, 0.5) var startup: float # physics frames before weapon reaches max velocity or before explosion
+@export_range(0, 30, 0.2) var velocity: float # max speed
 @export var damage: int
-@export var recovery: float # time in s before reuse
+@export_range(0, 10, 0.2) var recovery: float # time in s before reuse
 @export var recoil_force: int # force at which player is sent back upon fire
 @export var recoil_time: float # time in s player recoils for
 @export var enemy_knockback_damage: int # knockback threshold
