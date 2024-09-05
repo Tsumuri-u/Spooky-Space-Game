@@ -1,13 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://5sl3pm34tnm1"]
+[gd_scene load_steps=11 format=3 uid="uid://5sl3pm34tnm1"]
 
 [ext_resource type="PackedScene" uid="uid://c1ebkofaps1ns" path="res://scenes/player.tscn" id="1_b6spj"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_jcoth"]
 [ext_resource type="Texture2D" uid="uid://cevs8lhf6yco8" path="res://assets/backgrounds/Starfield 1 - 1024x1024.png" id="3_duu12"]
+[ext_resource type="Shader" path="res://shaders/game.gdshader" id="3_qd2xv"]
 [ext_resource type="PackedScene" uid="uid://d165filb1nd7h" path="res://scenes/enemies/basic_enemy.tscn" id="4_dkf4h"]
 [ext_resource type="PackedScene" uid="uid://ckryxjfxf6nbl" path="res://scenes/weapon_pickup.tscn" id="5_kxk2h"]
 [ext_resource type="Resource" uid="uid://bbkrmy545j16w" path="res://scenes/weapons/basic_gun.tres" id="6_ghf3y"]
 [ext_resource type="Resource" uid="uid://cirm4i4gw8ufu" path="res://scenes/weapons/missile_launcher.tres" id="7_pdoop"]
 [ext_resource type="Resource" uid="uid://c23awmicjy675" path="res://scenes/weapons/spike_launcher.tres" id="8_m357i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yk78y"]
+shader = ExtResource("3_qd2xv")
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 2.0
 
 [node name="Game" type="Node2D"]
 
@@ -26,10 +33,10 @@ script = ExtResource("2_jcoth")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -500
-offset_left = -1546.0
-offset_top = -1140.0
-offset_right = 2624.0
-offset_bottom = 1590.0
+offset_left = -1565.0
+offset_top = -1142.0
+offset_right = 2605.0
+offset_bottom = 1588.0
 scale = Vector2(1.01549, 0.980919)
 texture = ExtResource("3_duu12")
 stretch_mode = 1
@@ -54,3 +61,14 @@ weapon = ExtResource("6_ghf3y")
 [node name="WeaponPickup4" parent="Pickups" instance=ExtResource("5_kxk2h")]
 position = Vector2(402, 389)
 weapon = ExtResource("8_m357i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_yk78y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2

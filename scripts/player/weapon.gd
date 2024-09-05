@@ -31,7 +31,7 @@ func fire():
 			projectile.target = get_parent().target
 		
 	if projectile is Bullet || projectile is Placed:
-		main.add_child.call_deferred(projectile)
+		main.add_child(projectile)
 	
 	if projectile is Melee:
 		add_child(projectile)
