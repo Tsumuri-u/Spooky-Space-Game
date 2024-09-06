@@ -14,7 +14,7 @@
 shader = ExtResource("3_qd2xv")
 shader_parameter/brightness = 1.0
 shader_parameter/contrast = 1.0
-shader_parameter/saturation = 2.0
+shader_parameter/saturation = 1.0
 
 [node name="Game" type="Node2D"]
 
